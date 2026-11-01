@@ -5,6 +5,7 @@ import { readNight } from './digest/reader.js';
 import type { DigestRow } from './digest/types.js';
 import { loadConfig, type RigConfig } from './config.js';
 import { lane } from './lane.js';
+import { countNightRuns } from './digest/counts.js';
 import { readStatus } from './status.js';
 import { DigestPage } from './views/digest.js';
 import { Layout } from './views/layout.js';
@@ -41,13 +42,19 @@ export function createApp(config: RigConfig = loadConfig()) {
     return c.json(rows);
   });
 
-  app.get('/', (c) =>
-    c.html(
+  app.get('/', (c) => {
+    const status = readStatus(config);
+    const nights = status.nights.map((night) => ({
+      night,
+      ...countNightRuns(config.runsDir, night),
+    }));
+
+    return c.html(
       <Layout title="status" lane={lane()}>
-        <StatusBoard status={readStatus(config)} />
+        <StatusBoard status={status} nights={nights} />
       </Layout>,
-    ),
-  );
+    );
+  });
 
   return app;
 }
