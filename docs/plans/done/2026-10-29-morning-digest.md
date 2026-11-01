@@ -88,8 +88,9 @@ Done when: the preview link no longer shows the lane marker.
 | 3 | Digest JSON: GET /api/digest/:night | #1 | pi · openai/gpt-6-luna · high | 2026-11-01 |
 | 4 | Status board links each night to its digest | #1 | pi · openai/gpt-6-luna · high | 2026-11-01 |
 | 5 | Route tests for the digest routes | #1, #2, #3 | pi · openai/gpt-6-luna · high | 2026-11-01 |
-| 6 | Preview for review | #2 | pi · openai/gpt-6-luna · high | 2026-11-01 |
-| 7 | Clean up: take the lane marker off the preview | #6, review | pi · openai/gpt-6-luna · high | 2026-11-01 |
+| 6 | Preview for review | #2 | pi · anthropic/claude-opus-5.5 · medium (harness) | 2026-11-01 |
+| 7 | Clean up: take the lane marker off the preview | #6, review | pi · anthropic/claude-opus-5.5 · medium (harness) | 2026-11-01 |
 
 The preview went up on 1 November, was reviewed, and was uploaded again with no marker the same day
-(GitHub Pages, built by `.github/workflows/preview.yml`, never committed).
+(GitHub Pages, built by `.github/workflows/preview.yml`, never committed). #2–#4 were merged by the harness, which resolved the conflicts in `src/app.tsx`
+with one shared `digestRows` helper. #6 was closed once before the review and reopened.
