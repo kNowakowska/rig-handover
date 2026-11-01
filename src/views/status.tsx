@@ -1,6 +1,7 @@
+import type { NightCounts } from '../digest/counts.js';
 import type { Status } from '../status.js';
 
-type NightSummary = { night: string; ok: number; retry: number; fail: number };
+type NightSummary = { night: string } & NightCounts;
 
 export function StatusBoard({ status, nights }: { status: Status; nights: NightSummary[] }) {
   return (
